@@ -30,9 +30,53 @@ async function loginEmp(req, res){
     const saltRounds = 10;
     const pass2 = await bcrypt.hash(pass, saltRounds);
 
-    return res.status(200).json({
-        pass : pass2
-    })
+    try{
+      const [tokenz] = await dbConnection.query('SELECT * FROM tokendb WHERE email = ?', [mail]);
+      if (tokenz && tokenz.length > 0) {
+        await dbConnection.query('DELETE FROM tokendb WHERE email = ?', [mail]);
+      }
+
+      const [mail_exist] = await dbConnection.query('SELECT * FROM employee WHERE email = ?', [mail]);
+      if (mail_exist.length > 0) {
+      
+      const [Db_pass] = await dbConnection.query('SELECT pass FROM employee WHERE email = ?', [mail]);
+
+      const dbMatch = await bcrypt.compare(pass, Db_pass[0].pass);
+      
+
+      if (dbMatch) {
+        const token = uuidv4();
+        await dbConnection.query('INSERT INTO tokendb (email, token, user_type) VALUES (?, ?, ?)', [mail, token, 'Employee']);
+        const [userdet] = await dbConnection.query('SELECT * FROM employee WHERE email = ?', [mail]);
+        const emp = userdet.length >0 ? userdet[0] : null;
+
+        
+
+        return res.status(200).json({
+          message: 'Login Successful',
+          usersl: emp.slno,
+          token: token,
+          image: emp.image,
+          role : 'Employee'
+        });
+      } else {
+
+        return res.status(200).json({
+          message: 'Sorry Password Does Not Match ... Make Sure To Insert Valid Password',
+        });
+      }
+    } else {
+      
+
+      return res.status(200).json({
+        message: 'Sorry Email Does Not Exist ... Make Sure To Insert Valid User Email.',
+      });
+    }
+    }catch(error){
+      return res.status(500).json({
+        message : error
+      })
+    }
 
 }
 
