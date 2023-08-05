@@ -36,8 +36,11 @@ function routeHandle (req, res, next){
 app.use(routeHandle);
 
 
-
-app.use(errorMw)
+app.use((err, req, res, next) => {
+    console.error('Global Error Handler:', err);
+    res.status(500).json({ error: 'Something went wrong!' });
+  });
+  
 
 app.listen(process.env.PORT, ()=>{
     console.log("server running...");
