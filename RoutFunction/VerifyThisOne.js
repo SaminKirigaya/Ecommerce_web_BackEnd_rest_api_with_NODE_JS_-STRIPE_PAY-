@@ -1,6 +1,6 @@
+require('dotenv').config()
 const dbConnection = require('../config/Db')
 const nodemailer = require('nodemailer');
-
 
 
 const transporter = nodemailer.createTransport({

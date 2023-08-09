@@ -1,4 +1,6 @@
 const dbConnection = require('../config/Db')
+const path = require('path');
+const fs = require('fs');
 
 async function DelEmp(req, res){
     const {usersl, empSl} = req.params;
@@ -6,6 +8,13 @@ async function DelEmp(req, res){
     if(empExist.length>0){
         const [success] = await dbConnection.query('DELETE FROM employee WHERE slno = ?',[empSl]);
         if(success){
+            const img = empExist[0].image;
+            const url = img;
+            const parts = url.split('/'); 
+            const filename = parts[parts.length - 1];
+            const imagePath = path.join('public/images', filename);
+            fs.unlinkSync(imagePath);
+
             const [isLogged] = await dbConnection.query('SELECT * FROM tokendb WHERE email = ?',[empExist[0].email]);
             
             if(isLogged.length>0){

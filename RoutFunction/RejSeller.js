@@ -1,5 +1,7 @@
 const dbConnection = require('../config/Db')
 const nodemailer = require('nodemailer');
+const path = require('path');
+const fs = require('fs');
 
 
 
@@ -36,6 +38,14 @@ async function RejSeller (req, res, next){
                             message : 'Some Error Occured.'
                         })
                     } else {
+                        const [img] = await dbConnection.query('SELECT image FROM seller_verify WHERE slno = ?',[sellerSln]);
+                        
+                        const url = img[0].image;
+                        const parts = url.split('/'); 
+                        const filename = parts[parts.length - 1];
+                        const imagePath = path.join('public/images', filename);
+                        fs.unlinkSync(imagePath);
+
                         await dbConnection.query('DELETE FROM seller_verify WHERE slno = ?',[sellerSln]);
                         return res.status(200).json({
                             message : 'Successfully Rejected!!!'
