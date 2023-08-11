@@ -6,6 +6,7 @@ async function PrdType(req, res, next){
         const [allTypes] = await dbConnection.query('SELECT * FROM product_type');
         if(allTypes){
             return   res.status(200).json({
+                message : 'Successful',
                 allType : allTypes
             });
         }

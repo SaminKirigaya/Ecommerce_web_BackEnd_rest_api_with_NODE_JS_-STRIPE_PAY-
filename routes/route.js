@@ -54,7 +54,9 @@ const LogOut = require('../RoutFunction/LogOut');
 const EditSeller = require('../RoutFunction/EditSeller');
 const getallDataMine = require('../RoutFunction/getallDataMine');
 const EditMe = require('../RoutFunction/EditMe');
-
+const homeeventdats  = require('../RoutFunction/homeeventdats');
+const GettingHomePrd = require('../RoutFunction/GettingHomePrd');
+const getserverReview = require('../RoutFunction/getserverReview');
 
 //Employee login
 router.post('/loginEmp',
@@ -321,9 +323,20 @@ AuthenUser,
 EditMe
 )
 
+//event data at home page 
+router.get('/eventDats', 
+homeeventdats
+)
 
+//getting all product at home
+router.get('/getHomePrd',
+GettingHomePrd 
+)
 
-
+// get server reviews and show at home
+router.get('/getwebreview', 
+getserverReview 
+)
 
 
 

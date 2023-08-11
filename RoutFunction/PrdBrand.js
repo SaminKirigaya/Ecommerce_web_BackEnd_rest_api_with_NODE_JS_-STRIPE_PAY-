@@ -6,6 +6,7 @@ async function PrdBrand(req, res, next){
         const [allBrands] = await dbConnection.query('SELECT * FROM brand_type');
         if(allBrands){
             return   res.status(200).json({
+                message : 'Successful',
                 allBrand : allBrands
             });
         }
