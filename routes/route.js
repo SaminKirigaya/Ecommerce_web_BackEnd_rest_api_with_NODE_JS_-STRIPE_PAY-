@@ -57,6 +57,14 @@ const EditMe = require('../RoutFunction/EditMe');
 const homeeventdats  = require('../RoutFunction/homeeventdats');
 const GettingHomePrd = require('../RoutFunction/GettingHomePrd');
 const getserverReview = require('../RoutFunction/getserverReview');
+const submitReview = require('../RoutFunction/submitReview');
+const ShowEventProd = require('../RoutFunction/ShowEventProd');
+const ShowTypeProd = require('../RoutFunction/ShowTypeProd');
+const ShowBrandProd = require('../RoutFunction/ShowBrandProd');
+
+
+
+
 
 //Employee login
 router.post('/loginEmp',
@@ -337,6 +345,28 @@ GettingHomePrd
 router.get('/getwebreview', 
 getserverReview 
 )
+
+// submit review
+router.post('/sendReview', 
+submitReview 
+)
+
+
+// Show all event product 
+router.get('/getEventPrd/:sln', 
+ShowEventProd 
+)
+
+// show all product based on a type
+router.get('/getTypePrd/:sln', 
+ShowTypeProd 
+)
+
+// show all product based on brand
+router.get('/getBrandPrd/:sln', 
+ShowBrandProd 
+)
+
 
 
 
