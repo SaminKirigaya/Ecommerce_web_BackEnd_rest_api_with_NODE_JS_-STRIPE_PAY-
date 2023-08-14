@@ -23,6 +23,11 @@ async function GettingHomePrd(req, res, next){
             message : 'Successful',
             allPrd : allPrd
         })
+    }else{
+        return res.status(200).json({
+            message : 'Failed',
+            
+        })
     }
 }
 

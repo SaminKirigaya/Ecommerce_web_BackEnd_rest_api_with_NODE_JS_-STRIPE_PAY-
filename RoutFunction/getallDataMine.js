@@ -9,6 +9,11 @@ async function getallDataMine(req, res, next){
                 message : 'Success',
                 userData : userData
             })
+        }else{
+            return  res.status(200).json({
+                message : 'Failed'
+                
+            })
         }
     }catch(error){
         next(error)

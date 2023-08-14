@@ -9,6 +9,11 @@ async function PrdType(req, res, next){
                 message : 'Successful',
                 allType : allTypes
             });
+        }else{
+            return   res.status(200).json({
+                message : 'Failed.'
+                
+            });
         }
     }catch(error){
         next(error)

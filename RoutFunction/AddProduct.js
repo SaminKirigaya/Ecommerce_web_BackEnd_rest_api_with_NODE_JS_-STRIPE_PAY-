@@ -41,6 +41,10 @@ async function AddProduct(req, res, next){
             return  res.status(200).json({
                 message : 'Successfully Added Product Type ...'
             })
+        }else{
+            return  res.status(200).json({
+                message : 'Error Occured ...'
+            })
         }
     }catch(error){
         next(error);

@@ -1,11 +1,11 @@
 const dbConnection = require('../config/Db');
 
-async function ShowBrandProd(req, res, next){
+async function findsametype(req, res, next){
 
-    const {sln} = req.params;
+    const {type} = req.params;
     try{
-        const [evName] = await dbConnection.query('SELECT type FROM brand_type WHERE slno = ?',[sln]);
-        const [allPrd] = await dbConnection.query('SELECT * FROM product WHERE brand = ? ORDER BY slno DESC',[evName[0].type]);
+        const [evName] = await dbConnection.query('SELECT type FROM product WHERE slno = ?',[type]);
+        const [allPrd] = await dbConnection.query('SELECT * FROM product WHERE type = ? ORDER BY slno DESC',[evName[0].type]);
         if(allPrd.length>0){
             await Promise.all(
                 allPrd.map(async (perpost) => {
@@ -29,7 +29,7 @@ async function ShowBrandProd(req, res, next){
             })
         }else{
             return res.status(200).json({
-                message : 'Failed',
+                message : 'Failed.'
                 
             })
         }
@@ -40,4 +40,4 @@ async function ShowBrandProd(req, res, next){
     
 }
 
-module.exports = ShowBrandProd;
+module.exports = findsametype;

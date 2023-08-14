@@ -36,8 +36,20 @@ async function DelThisProduct(req, res, next){
                     return res.status(200).json({
                         message : 'Success'
                     })
+                }else{
+                    return res.status(200).json({
+                        message : 'Failed'
+                    })
                 }
+            }else{
+                return res.status(200).json({
+                    message : 'Failed'
+                })
             }
+        }else{
+            return res.status(200).json({
+                message : 'Failed'
+            })
         }
 
     }catch(error){

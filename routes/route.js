@@ -61,10 +61,13 @@ const submitReview = require('../RoutFunction/submitReview');
 const ShowEventProd = require('../RoutFunction/ShowEventProd');
 const ShowTypeProd = require('../RoutFunction/ShowTypeProd');
 const ShowBrandProd = require('../RoutFunction/ShowBrandProd');
-
-
-
-
+const Role = require ('../RoutFunction/Role');
+const AllPrdData = require('../RoutFunction/AllPrdData');
+const findsametype = require('../RoutFunction/findsametype');
+const userwhocommented = require('../RoutFunction/userwhocommented');
+const AllEventPrdData = require('../RoutFunction/AllEventPrdData');
+const findsameeventtype = require('../RoutFunction/findsameeventtype');
+const userwhocommentedevent = require('../RoutFunction/userwhocommentedevent');
 
 //Employee login
 router.post('/loginEmp',
@@ -366,6 +369,49 @@ ShowTypeProd
 router.get('/getBrandPrd/:sln', 
 ShowBrandProd 
 )
+
+// get role at add to cart to check if its a seller
+router.get('/getuserRole/:usersl', 
+Role 
+)
+
+// all data to add product in cart 
+router.get('/getaddingProd/:sln', 
+AllPrdData 
+)
+
+// sametype product
+router.get('/getsametypePrd/:type', 
+findsametype 
+)
+
+// product user comments
+router.get('/getprdusercoms/:sln', 
+userwhocommented 
+)
+
+// all data to add event product in cart 
+router.get('/geteventaddingProd/:sln', 
+AllEventPrdData 
+)
+
+
+
+// sametype product
+router.get('/getsameeventtypePrd/:type', 
+findsameeventtype 
+)
+
+
+// event product user comments
+router.get('/geteventprdusercoms/:sln', 
+userwhocommentedevent 
+)
+
+
+
+
+
 
 
 

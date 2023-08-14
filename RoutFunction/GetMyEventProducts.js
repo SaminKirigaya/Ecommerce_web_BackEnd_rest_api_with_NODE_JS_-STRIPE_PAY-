@@ -9,6 +9,11 @@ async function GetMyProducts(req, res, next){
                 message : 'Successful',
                 productData : getSellerProduct
             })
+        }else{
+            return  res.status(200).json({
+                message : 'Failed'
+            
+            })
         }
     }catch(error){
         next(error)

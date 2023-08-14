@@ -53,7 +53,15 @@ async function VerifyUser(req, res){
                     })
                 }
             
+            }else{
+                return res.status(200).json({
+                    message : 'Some Error Occured.'
+                })
             }
+        }else{
+            return res.status(200).json({
+                message : 'Some Error Occured.'
+            })
         }
 
     }catch(error){

@@ -27,6 +27,11 @@ async function ShowTypeProd(req, res, next){
                 message : 'Success',
                 allPrd : allPrd
             })
+        }else{
+            return res.status(200).json({
+                message : 'Failed',
+            
+            })
         }
     }catch(error){
         next(error)

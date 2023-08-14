@@ -23,6 +23,11 @@ async function getserverReview(req, res, next){
                 message : 'Successful',
                 allReview : review
             });
+        }else{
+            return  res.status(200).json({
+                message : 'Failed',
+                
+            });
         }
     }catch(error){
         next(error);

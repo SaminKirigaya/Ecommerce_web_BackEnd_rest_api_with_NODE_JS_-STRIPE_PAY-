@@ -53,6 +53,10 @@ async function RejSeller (req, res, next){
                     }
                 });
             
+        }else{
+            return res.status(200).json({
+                message : 'Failed.'
+            })
         }
     }catch(error){
         next(error)

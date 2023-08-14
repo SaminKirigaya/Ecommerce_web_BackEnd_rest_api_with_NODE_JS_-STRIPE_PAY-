@@ -75,7 +75,7 @@ async function AddEmp(req, res){
 
     if (emailExists.length>0) {
         fs.unlinkSync(imageFile.path);
-        return res.status(200).json({ message: 'Sorry Email Already Exist ... You Can Not Use Same Email Twice.' });
+        return  res.status(200).json({ message: 'Sorry Email Already Exist ... You Can Not Use Same Email Twice.' });
     }  
 
 

@@ -9,6 +9,10 @@ async function EditableEventProduct(req, res, next){
                     productData : existProd 
                 })
             }
+        }else{
+            return res.status(200).json({
+                message : 'No Such product'
+            })
         }
     }catch(error){
         next(error)
