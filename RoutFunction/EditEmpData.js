@@ -15,9 +15,9 @@ const registrationSchema = Joi.object({
     nid : Joi.number().required(),
     gender: Joi.string().pattern(/^([a-zA-Z]+)$/).required(),
     dateofBirth : Joi.date().required(),
-    address : Joi.string().required(),
-    phoneNumber : Joi.string().required(),
-    designation : Joi.string().required(),
+    address : Joi.string().pattern(/^([a-zA-Z,.\-_!?/:0-9'" ]+)$/).required(),
+    phoneNumber : Joi.string().pattern(/^([0-9 ]+)$/).required(),
+    designation : Joi.string().pattern(/^([a-zA-Z,.\-_!?/:0-9'" ]+)$/).required(),
 
   });
   

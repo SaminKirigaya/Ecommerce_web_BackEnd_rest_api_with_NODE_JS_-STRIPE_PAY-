@@ -12,13 +12,13 @@ const nodemailer = require('nodemailer');
 
 const registrationSchema = Joi.object({
     name :  Joi.string().pattern(/^([a-zA-Z ]+)$/).required(),
-    country: Joi.string().pattern(/^([a-zA-Z]+)$/).required(),
+    country: Joi.string().pattern(/^([a-zA-Z ]+)$/).required(),
     age: Joi.number().integer().min(7).max(90).required(),
-    gender: Joi.string().pattern(/^([a-zA-Z]+)$/).required(),
+    gender: Joi.string().pattern(/^([a-zA-Z ]+)$/).required(),
     dateofBirth : Joi.date().required(),
-    address : Joi.string().required(),
-    delivery : Joi.string().required(),
-    phoneNumber : Joi.string().required()
+    address : Joi.string().pattern(/^([a-zA-Z,.\-_!?/:0-9'" ]+)$/).required(),
+    delivery : Joi.string().pattern(/^([a-zA-Z,.\-_!?/:0-9'" ]+)$/).required(),
+    phoneNumber : Joi.string().pattern(/^([0-9 ]+)$/).required()
 
   });
   

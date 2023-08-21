@@ -11,9 +11,8 @@ const dbConnection = require('../config/Db')
 dotenv.config();
 
 const schema = Joi.object({
-    
     email: Joi.string().email().required(),
-    password: Joi.string().required(),
+    password: Joi.string().required()
   });
   
 

@@ -6,7 +6,7 @@ const Authentication = require('../middleware/Authentication');
 const AuthenEmp = require('../middleware/AuthenEmp');
 const AuthenSeller = require('../middleware/AuthenSeller');
 const AuthenUser = require('../middleware/AuthenUser');
-
+const Stripe = require('stripe')(process.env.Secret_Key); 
 
 const loginEmp = require('../RoutFunction/loginEmp');
 const AmILogged = require('../RoutFunction/AmILogged');
@@ -68,6 +68,32 @@ const userwhocommented = require('../RoutFunction/userwhocommented');
 const AllEventPrdData = require('../RoutFunction/AllEventPrdData');
 const findsameeventtype = require('../RoutFunction/findsameeventtype');
 const userwhocommentedevent = require('../RoutFunction/userwhocommentedevent');
+const AddNormToCart = require('../RoutFunction/AddNormToCart');
+const AddEventToCart = require('../RoutFunction/AddEventToCart');
+const AmountInCart = require('../RoutFunction/AmountInCart');
+const FindSearchPrd = require('../RoutFunction/FindSearchPrd');
+const getmyCartData = require('../RoutFunction/getmyCartData');
+const ChangeCartAmount  = require('../RoutFunction/ChangeCartAmount');
+const RemoveFromCart = require('../RoutFunction/RemoveFromCart');
+const ConcodDel = require('../RoutFunction/ConcodDel');
+const paymentCard = require('../RoutFunction/paymentCard');
+const FinishCardPay = require('../RoutFunction/FinishCardPay');
+const GetAllClientOrders = require('../RoutFunction/GetAllClientOrders');
+const ChangeDelCond = require('../RoutFunction/ChangeDelCond');
+const AllmyconfirmedPrd = require('../RoutFunction/AllmyconfirmedPrd');
+const getmyproductDeliveryStatus = require('../RoutFunction/getmyproductDeliveryStatus');
+const getSpecificStates = require('../RoutFunction/getSpecificStates');
+const SaveReviewServer = require('../RoutFunction/SaveReviewServer');
+const GetReview = require('../RoutFunction/GetReview');
+const GetReport = require('../RoutFunction/GetReport');
+const withinTime = require('../RoutFunction/withinTime');
+const ReportAdding = require('../RoutFunction/ReportAdding');
+const GetAllReports = require('../RoutFunction/GetAllReports');
+const DelReport = require ('../RoutFunction/DelReport');
+const ForgotPass = require ('../RoutFunction/ForgotPass');
+
+
+
 
 //Employee login
 router.post('/loginEmp',
@@ -408,11 +434,145 @@ router.get('/geteventprdusercoms/:sln',
 userwhocommentedevent 
 )
 
+// adding normal product to cart
+router.get('/addnormCart/:usersl/:prdsl', 
+AuthenUser, 
+AddNormToCart 
+)
 
 
+// adding event product to cart
+router.get('/addeventCart/:usersl/:prdsl', 
+AuthenUser, 
+AddEventToCart 
+)
+
+// amount in user cart
+router.get('/amountincart/:usersl', 
+AuthenUser, 
+AmountInCart 
+)
+
+// show search product 
+router.get('/getSearchPrd/:sln', 
+FindSearchPrd 
+)
+
+// get cart prd to finish buying
+router.get('/getmycartPrd/:usersl', 
+AuthenUser, 
+getmyCartData 
+)
+
+// change cart amount
+router.get('/changecartamount/:usersl/:slno/:amountNew', 
+AuthenUser, 
+ChangeCartAmount 
+)
+
+// remove permanent from cart 
+router.get('/removecartitem/:usersl/:slno', 
+AuthenUser, 
+RemoveFromCart 
+)
+
+// confirm cash on delivery products in delivery database with all individual seller data and estimeted delivery date
+router.get('/confirmcodall/:usersl', 
+AuthenUser, 
+ConcodDel 
+)
+
+// router card pay 
+router.post('/mycardpay/:usersl', 
+AuthenUser, 
+paymentCard 
+)
 
 
+// router finish card payment by adding data in database sql
+router.post('/mycardpayCon/:usersl', 
+AuthenUser, 
+FinishCardPay 
+)
 
+// get all client orders in seller web page
+router.get('/getmyclients/:usersl', 
+AuthenSeller, 
+GetAllClientOrders
+ )
+
+// change product delivery status
+router.post('/changeDelStat/:usersl', 
+AuthenSeller, 
+ChangeDelCond 
+)
+
+// all my confirmed orders 
+router.get('/getmyshipments/:usersl', 
+AuthenUser, 
+AllmyconfirmedPrd 
+)
+
+// get the specific delivery status 
+router.post('/getStatusPrdOrd/:usersl', 
+AuthenUser, 
+getmyproductDeliveryStatus
+)
+
+
+// get specific time date change states of delivery
+router.post('/getdeliveryStatus/:usersl', 
+AuthenUser,
+getSpecificStates 
+)
+
+
+// router get all value review to server 
+router.post('/getreviewfinal/:usersl', 
+AuthenUser, 
+SaveReviewServer 
+)
+
+// router get if a user did review already 
+router.post('/getreviewStatus/:usersl', 
+AuthenUser,
+GetReview
+)
+
+// router get if a user did reported already 
+router.post('/getreportStatus/:usersl', 
+AuthenUser,
+GetReport
+)
+
+// report within time ? get time data and latest time is it within 7 days
+router.post('/getwithintimeStatus/:usersl',
+AuthenUser, 
+withinTime 
+)
+
+// add report to product that employee can see
+router.post('/getreportfinal/:usersl', 
+AuthenUser, 
+ReportAdding 
+)
+
+// show report is employee page 
+router.get('/getallreports/:usersl', 
+AuthenEmp, 
+GetAllReports 
+)
+
+// delete this report 
+router.get('/deletereport/:usersl/:serial', 
+AuthenEmp, 
+DelReport 
+)
+
+// forgot my pass 
+router.post('/forgotmypassuwu', 
+ForgotPass 
+)
 
 
 

@@ -15,13 +15,13 @@ const registrationSchema = Joi.object({
     mail: Joi.string().email().required(),
     password: Joi.string().pattern(/^([a-zA-Z0-9*!@]+){6,50}$/).required(),
     confirm_password: Joi.string().valid(Joi.ref('password')).required(),
-    country: Joi.string().pattern(/^([a-zA-Z]+)$/).required(),
+    country: Joi.string().pattern(/^([a-zA-Z ]+)$/).required(),
     age: Joi.number().integer().min(7).max(90).required(),
-    gender: Joi.string().pattern(/^([a-zA-Z]+)$/).required(),
+    gender: Joi.string().pattern(/^([a-zA-Z ]+)$/).required(),
     dateofBirth : Joi.date().required(),
-    address : Joi.string().required(),
-    delivery : Joi.string().required(),
-    phoneNumber : Joi.string().required()
+    address : Joi.string().pattern(/^([a-zA-Z,.\-_!?/:0-9'" ]+)$/).required(),
+    delivery : Joi.string().pattern(/^([a-zA-Z,.\-_!?/:0-9'" ]+)$/).required(),
+    phoneNumber : Joi.string().pattern(/^([0-9 ]+)$/).required()
 
   });
   
