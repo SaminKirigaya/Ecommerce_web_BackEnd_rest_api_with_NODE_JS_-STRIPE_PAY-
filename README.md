@@ -9,6 +9,9 @@ There are 3 segments of api here :
 - Buyer
 Based on the login of user one will be activated.
 
+## Important Note
+ The Project has three segment of login (User, Seller, Employee). If a seller does registration before login as the seller make sure to verify it using employee user id .... Employee can log in at Employee page. Employee admin id : email : gokus@gmail.com   pass : iamgoku
+
 ## Features
 
 -   Full Authentication and Authorization Based.
