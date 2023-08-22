@@ -45,15 +45,15 @@ Based on the login of user one will be activated.
 
 The most important thing which you must remember is that you have to change .env file and adjust it according to your hosting.I ran the project in localhost.
 
-PORT = 8000
-Imgpath = http://localhost:8000
-Host = localhost
-User = root
-Pass = 
-DB = ecommerce
-smtpMail = 
-smtpPass = 
-Secret_Key = 
+- PORT = 8000
+- Imgpath = http://localhost:8000
+- Host = localhost
+- User = root
+- Pass = 
+- DB = ecommerce
+- smtpMail = 
+- smtpPass = 
+- Secret_Key = 
 
 
 -   Port means which port to run it.
